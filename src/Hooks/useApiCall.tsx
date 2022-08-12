@@ -8,7 +8,7 @@ export function useGetData() {
         const doFetch = async () => {
             try {
                 // Simulate a api call
-                const response = await new Promise(resolve => {
+                const response:any = await new Promise(resolve => {
                     setTimeout(function () { resolve(getArticles()); }, 100);
                 });
                 // Example for api call using axios

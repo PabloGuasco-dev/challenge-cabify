@@ -1,0 +1,133 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.list-group-item {
+  color: black;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-primary {
+  margin: 3px;
+  margin-top: 8px;
+}
+
+.container-table {
+  overflow-x:auto;
+  height: 300px;
+}
+
+.listItem{
+  color: white;
+}
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: #cccccc;
+  background-image: url('../public/bonus/assets/background.png');
+  align-content: center;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rebeccapurple;
+}
+
+.body-modal {
+  width: 60%;
+  height: 70%;
+  background-color: white;
+  margin: auto;
+  margin-top: 4em;
+}
+
+.btn-success {
+  color: #282c34;
+  background-color: white;
+  border-color: white;
+}
+
+.modal-container {
+  text-align: left;
+  height: 100%;
+  display: flex;
+}
+
+.article-image {
+  width: 70%;
+  height: 100%;
+}
+
+.article-name {
+  margin-top: 5em;
+  text-align: left;
+  vertical-align:top;
+  text-transform:lowercase;
+  width: 100%;
+  margin-left: 1em;
+  font-weight:bold;
+  height: 2em;
+}
+
+.article-price {
+  margin-top: 5em;
+  text-align: right;
+  margin-right: 1em;
+  vertical-align: top;
+  width: 100%;
+  font-weight:bold;
+  height: 2em;
+}
+
+.article-name:first-letter {
+    text-transform: uppercase;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+  margin-top: 6em;
+}
+
+

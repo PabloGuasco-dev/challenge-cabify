@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useGetData } from '../Hooks/useApiCall.js';
-import Modal from './modal';
+import { useGetData } from '../Hooks/useApiCall.tsx';
+import Modal from './modal.tsx';
 
-interface Item {
+type Item  = {
     code: string,
     name: string,
     quantity: number,

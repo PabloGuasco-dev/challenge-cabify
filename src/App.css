@@ -121,13 +121,17 @@
   height: 2em;
 }
 
-.article-name:first-letter {
-    text-transform: uppercase;
+.article-detail {
+      position: absolute;
+      top: 25%;
+      width: 18%;
+      text-align: right;
+      right: 22%;
+      font-size: 1vw;
 }
 
-hr.solid {
-  border-top: 3px solid #bbb;
-  margin-top: 6em;
+.article-name:first-letter {
+    text-transform: uppercase;
 }
 
 

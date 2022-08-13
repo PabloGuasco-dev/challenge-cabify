@@ -13,7 +13,11 @@ const Modal = ({ handleClose , selectedItem }) => {
               <img className='article-image' src='../bonus/assets/tshirt.png' alt='article_image' ></img>
               <div className='article-name'><p>{ selectedItem.code }</p></div>
               <div className='article-price'><p>{ selectedItem.price + "€"}</p></div>
-              <hr className="solid"></hr>
+              <div className='article-detail'><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                In sodales semper elit sit amet interdum. Praesent volutpat 
+                sed elit vel consectetur. Nulla tempus tincidunt ex, 
+                sit amet semper ipsum imperdiet varius. In rutrum aliquam nisl, 
+                sagittis faucibus felis bibendum id.</p></div>
             </div>
           </body>
         </section>

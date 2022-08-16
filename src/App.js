@@ -1,5 +1,5 @@
 import './App.css';
-import Checkout from './Components/checkout.tsx';
+import Checkout from './components/checkout.tsx';
 
 
 

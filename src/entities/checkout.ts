@@ -1,3 +1,5 @@
+import type Checkout from './ICheckout';
+
 type Item  = {
     code: string,
     name: string,
@@ -5,31 +7,14 @@ type Item  = {
     price: number,
 }
 
-interface Checkout {
-    foundArticle: boolean;
-    /**
-     * Scans a product adding it to the current cart.
-     * @param code The product identifier
-     * @returns itself to allow function chaining
-     */
-    scan(code: string): this;
-    /**
-     * Returns the value of all cart products with the discounts applied.
-     */
-    total(): number;
-}
-
-
-class CheckoutCabify implements Checkout {
+class checkout implements Checkout {
     foundArticle: boolean = false;
     items: Item[] = [];
     articles: Object = {};
-    setItems: Function = () => {};
 
-    constructor (items:Item[], articles: Object, setItems: Function) {
-        this.items = items;
+    constructor (articles: Object, items: Item[]) {
         this.articles = articles;
-        this.setItems = setItems;
+        this.items = items;
     }
 
     scan(code: string): this {
@@ -39,7 +24,7 @@ class CheckoutCabify implements Checkout {
             repeatedItem.price = repeatedItem.price + this.articles[code].price;
             let newArr = [...this.items];
             newArr[this.items.indexOf(repeatedItem)] = repeatedItem;
-            this.setItems(newArr);
+            this.items = [...newArr];
             this.foundArticle = true;
         } else if (this.articles[code]) {
             const newItem: Item = {
@@ -48,21 +33,25 @@ class CheckoutCabify implements Checkout {
                 quantity: 1,
                 price: this.articles[code].price,
             }
-            this.setItems([...this.items, newItem]);
+            this.items = [...this.items, newItem];
             this.foundArticle = true;
         }
         return this;
     }
+
     total(): number {
         let sum = 0;
+        //TODO: import this logic from pricing-rules file
         for (let i = 0; i < this.items.length; i += 1) {
+            // Buy two of them, get one free. (e.g: pay 10€ for 4 mugs)
             if (this.items[i].code === 'MUG' && this.items[i].quantity > 1) {
                 sum += ~~(this.items[i].quantity / 2) * this.articles[this.items[i].code].price;
                 if ((this.items[i].quantity % 2) === 1) {
                     sum += this.articles[this.items[i].code].price;
                 }
-            } else if (this.items[i].code === 'TSHIRT' && this.items[i].quantity > 2) {
-                sum += (this.items[i].quantity * this.articles[this.items[i].code].price) - ((this.items[i].quantity * articles[items[i].code].price) * 0.05);
+            } // Buying 3 or more of this product, the price per unit is reduced by 5%
+            else if (this.items[i].code === 'TSHIRT' && this.items[i].quantity > 2) {
+                sum += (this.items[i].quantity * this.articles[this.items[i].code].price) - ((this.items[i].quantity * this.articles[this.items[i].code].price) * 0.05);
             } else {
                 sum += this.items[i].quantity * this.articles[this.items[i].code].price;
             }
@@ -71,4 +60,4 @@ class CheckoutCabify implements Checkout {
     }
 }
 
-export default CheckoutCabify;
+export default checkout;

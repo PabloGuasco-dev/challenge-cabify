@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useGetData } from '../Hooks/useApiCall.tsx';
+import { useGetData } from '../hooks/useApiCall.tsx';
 import Modal from './modal.tsx';
-import CheckoutCabify from '../Classes/checkout-cabify.tsx'
+import checkout from '../entities/checkout.ts'
 
 type Item  = {
     code: string,
@@ -17,25 +17,26 @@ const CheckoutView = () => {
     const [selectedItem, setSelectedItem] = useState()
 
     let articles: Object = {};
-    let checkoutCabify:CheckoutCabify = undefined;
+    let co:checkout = undefined;
     
     articles = useGetData().data;
     
-    if(articles && !checkoutCabify) {
-            checkoutCabify = new CheckoutCabify(items, articles, setItems);
+    if(articles && !co) {
+        co = new checkout(articles, items);
     }
 
     useEffect(() => {
-        if(articles && checkoutCabify) {
-            setTotal(checkoutCabify.total());
+        if(articles && co) {
+            setTotal(co.total());
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items]);
 
     const addItem = (event) => {
         if (event.target.value !== "") {
-            const foundArticle = checkoutCabify.scan(event.target.value).foundArticle;
+            const { foundArticle, items } = co.scan(event.target.value);
             if (foundArticle) {
+                setItems([...items]);
                 setTimeout(() => {
                     event.target.value = "";
                 }, 200)

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getArticles from '../Resources/articles';
+import getArticles from '../resources/articles';
 
 
 export function useGetData() {
